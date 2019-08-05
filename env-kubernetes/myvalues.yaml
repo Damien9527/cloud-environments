@@ -9,7 +9,7 @@ nexus:
     repository: registry.cn-beijing.aliyuncs.com/acs-sample/jenkins-x-nexus
     tag: 0.0.19
   persistence:
-    storageClass: "alicloud-disk-available"
+    storageClass: "nfs-client"
     size: 20Gi
 
 chartmuseum:
@@ -17,14 +17,14 @@ chartmuseum:
     repository: registry.cn-beijing.aliyuncs.com/acs-sample/jenkins-x-chartmuseum
     tag: v0.7.1
   persistence:
-    storageClass: "alicloud-disk-available"
+    storageClass: "nfs-client"
     size: 20Gi
 
 jenkins:
   Master:
     Image: registry.cn-beijing.aliyuncs.com/acs-sample/jenkins-x 
     ImageTag: 0.0.41
-    ServiceType: LoadBalancer
+    ServiceType: NodePort
   Servers:
     Global:
       EnvVars:
@@ -36,7 +36,7 @@ jenkins:
           Maven:
             Image: registry.cn-beijing.aliyuncs.com/haoshuwei/jenkins-x-builder-maven:0.1.185 
   Persistence:
-    StorageClass: "alicloud-disk-available"
+    StorageClass: "nfs-client"
     Size: 40Gi
 
 monocular:
